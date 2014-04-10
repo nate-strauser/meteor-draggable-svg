@@ -1,0 +1,58 @@
+<head>
+  <title>draggable-svg</title>
+</head>
+
+<body>
+  {{> board}}
+</body>
+
+<template name="board">
+  <div id="toolbar">
+    <input id="addNetworkNode" type="button" value="Add network node" />
+    <input id="addBoundaryNode" type="button" value="Add boundary node" />
+    <input id="addConnector" type="button" value="Add connector" />
+  </div>
+  <svg id="networkGraph" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" width="{{windowWidth}}px" height="{{windowHeight}}px">
+    <rect id="draggableBackground" x="0" y="0" width="100%" height="100%" />
+    <g id="graph-matrix" transform="matrix({{matrix}})">
+      {{#each connectors}}
+          {{>connector}}
+      {{/each}}
+
+      {{#each boundaryNodes}}
+          {{>boundaryNode}}
+      {{/each}}
+
+      {{#each networkNodes}}
+          {{>networkNode}}
+      {{/each}}
+    </g>
+    <g id="zoomPanControls">
+      <circle cx="50" cy="50" r="42" fill="white" opacity="0.75"/>
+      <path class="button pan" data-dy="50" d="M50 10 l12 20 a40,70 0 0,0 -24,0z" />
+      <path class="button pan" data-dx="50" d="M10 50 l20 -12 a70,40 0 0,0 0,24z" />
+      <path class="button pan" data-dy="-50" d="M50 90 l12 -20 a40,70 0 0,1 -24,0z" />
+      <path class="button pan" data-dx="-50" d="M90 50 l-20 -12 a70,40 0 0,1 0,24z" />
+        
+      <circle class="compass" cx="50" cy="50" r="20"/>
+      <circle class="button zoom" data-zoom="0.8" cx="50" cy="41" r="8" />
+      <circle class="button zoom" data-zoom="1.25" cx="50" cy="59" r="8" />
+
+      <rect class="plus-minus" x="46" y="39.5" width="8" height="3"/>
+      <rect class="plus-minus" x="46" y="57.5" width="8" height="3"/>
+      <rect class="plus-minus" x="48.5" y="55" width="3" height="8"/>
+    </g>
+  </svg>
+</template>
+
+<template name="networkNode">
+  <ellipse id="networkNode_{{_id}}" class="networkNode" data-id="{{_id}}" cx="{{positionX}}" cy="{{positionY}}" rx="{{networkNodeHeight}}" ry="{{networkNodeWidth}}"/>
+</template>
+
+<template name="connector">
+  <line id="connector_{{_id}}" class="connector" data-id="{{_id}}" x1="{{sourceX}}" y1="{{sourceY}}" x2="{{targetX}}" y2="{{targetY}}" />
+</template>
+
+<template name="boundaryNode">
+  <rect id="boundaryNode_{{_id}}" class="boundaryNode" data-id="{{_id}}" x="{{positionX}}" y="{{positionY}}" width="{{boundaryNodeWidth}}" height="{{boundaryNodeHeight}}" />
+</template>

@@ -1,0 +1,53 @@
+
+
+.boundaryNode{
+	fill:blue;
+	stroke:black;
+	cursor: move;
+}
+
+.networkNode{
+	stroke: black;
+	fill: gray;
+	cursor: move;
+}
+
+#draggableBackground{
+	fill:white;
+	stroke-opacity:1.0;
+}
+
+#toolbar{
+	position: absolute;
+	top:0px;
+	left:200px;
+	z-index: 1000;
+}
+
+.connector{
+	stroke:rgb(255,0,0);
+	stroke-width:2;
+	stroke-opacity:0.9;
+}
+
+.compass{
+	fill:  #fff;
+	stroke:  #000;
+	stroke-width:  1.5;
+}
+
+.button{
+	fill:  #225EA8;
+	stroke:  #0C2C84;
+	stroke-miterlimit:  6;
+	stroke-linecap:  round;
+}
+
+.button:hover{
+	stroke-width:  2;
+}
+
+.plus-minus{
+	fill:  #fff;
+	pointer-events: none;
+}
